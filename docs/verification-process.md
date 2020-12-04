@@ -1,6 +1,6 @@
 # Verification Process
 
-This library and the python [cert-verifier](https://github.com/blockchain-certificates/cert-verifier) library verify Blockchain Certificates. However, anyone should be able to verify independently, whether manually or by writing their own library or service. These steps walk you through the certificate verification steps.
+This library and the python [cert-verifier] library verify Blockchain Certificates. However, anyone should be able to verify independently, whether manually or by writing their own library or service. These steps walk you through the certificate verification steps.
 
 ## Inputs
 
@@ -90,7 +90,7 @@ The `badge.issuer.revocationList` field in the Blockchain Certificate says where
 }
 ```
 
-The Blockcerts schema allows other implementations of revocation, depending on the implementations allowed by the blockchain, and domain/issuer appropriateness. 
+The schema allows other implementations of revocation, depending on the implementations allowed by the blockchain, and domain/issuer appropriateness. 
 
 ### Check certificate integrity
 
@@ -103,7 +103,7 @@ Blockcerts uses the Verifiable Claims MerkleProof2017 signature format, which is
 
 2\. Compare the hash of the local certificate with the value in the receipt.
 
-Blockcerts uses JSON-LD canonicalization to ensure a consistent order of the JSON input. This ensures a consistent hash for verifiers. Per the JSON-LD signature specification, this works as follows:
+It uses JSON-LD canonicalization to ensure a consistent order of the JSON input. This ensures a consistent hash for verifiers. Per the JSON-LD signature specification, this works as follows:
 
 *    Remove the `signature` portion from the Blockchain Certificate
 *    JSON-LD canonicalize the result
@@ -112,7 +112,7 @@ Blockcerts uses JSON-LD canonicalization to ensure a consistent order of the JSO
 
 The resulting value should match the value in `signature.targetHash`
 
-Note that Blockcerts performs an additional test during JSON-LD canonicalization to detect unmapped fields via a fallback `@vocab` entry, and detecting if any fields were unmapped.
+Note that this performs an additional test during JSON-LD canonicalization to detect unmapped fields via a fallback `@vocab` entry, and detecting if any fields were unmapped.
 
 3\. Compare the merkleRoot value in the certificate with the value in the blockchain transaction.
 
@@ -227,7 +227,7 @@ Lastly, it is a best practice with blockchain transactions to factor in the numb
 
 ## Experimenting with and applying better blockchain transaction API practices
 
-`@blockcerts/cert-verifier-js` has 2 configuration settings (see config/default.js) to help you experiment with and apply better practices when relying on blockchain APIs:
+`@cert-verifier-js` has 2 configuration settings (see config/default.js) to help you experiment with and apply better practices when relying on blockchain APIs:
 
 ```
 MininumConfirmations: 6,
@@ -239,7 +239,7 @@ MinimumBlockchainExplorers: 2,
   - remoteHash
   - issuingAddress
   
-`@blockcerts/cert-verifier-js` currently includes only 2 blockchain connectors so `MinimumBlockchainExplorers` cannot currently be set above 2. We welcome contributions of additional connectors to the open source.
+`@cert-verifier-js` currently includes only 2 blockchain connectors so `MinimumBlockchainExplorers` cannot currently be set above 2. We welcome contributions of additional connectors to the open source.
   
 See `lib\blockchainConnectors.js` for details on how they are used. 
 
