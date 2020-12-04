@@ -72,7 +72,7 @@ This information is required to cross check the public keys claimed by the issue
 
 ### Issuer revocation information
 
-The `badge.issuer.revocationList` field in the Blockchain Certificate says where to obtain the issuer's list of revoked certificates (a.k.a. assertions). Open Badges-compliant Blockcerts use an HTTP URI, per the Open Badges specification. When dereferenced, this URI provides an array of revoked assertions. For example:
+The `badge.issuer.revocationList` field in the Blockchain Certificate says where to obtain the issuer's list of revoked certificates (a.k.a. assertions). Open Badges-compliant Certyza use an HTTP URI, per the Open Badges specification. When dereferenced, this URI provides an array of revoked assertions. For example:
 
 ```
 {
@@ -99,7 +99,7 @@ Checking the certificate integrity ensures that the certificate has not been tam
 
 1\. Validate the Merkle proof in the certificate.
 
-Blockcerts uses the Verifiable Claims MerkleProof2017 signature format, which is based on Chainpoint 2.0. Per the (pending) specification, these Merkle proofs may be verified by sending the object in the `signature` field to any Chainpoint 2.0-compatible verifier, after replacing the `MerkleProof2017` type with the Chainpoint type `ChainpointSHA256v2`.
+Certyza uses the Verifiable Claims MerkleProof2017 signature format, which is based on Chainpoint 2.0. Per the (pending) specification, these Merkle proofs may be verified by sending the object in the `signature` field to any Chainpoint 2.0-compatible verifier, after replacing the `MerkleProof2017` type with the Chainpoint type `ChainpointSHA256v2`.
 
 2\. Compare the hash of the local certificate with the value in the receipt.
 
@@ -208,7 +208,7 @@ A key expiration is different from a certificate expiration; expiring keys is a 
 
 The input obtained from "Issuer revocation information" contains the list of revoked certificates (or "assertions"). 
 
-For Open Badges-compliant Blockcerts, a certificate is considered revoked if any `id` entry in the `revokedAssertions` array contains the id of the certificate. The certificate id is available in the (`id`) field of the Blockchain Certificate.
+For Open Badges-compliant Certyza, a certificate is considered revoked if any `id` entry in the `revokedAssertions` array contains the id of the certificate. The certificate id is available in the (`id`) field of the Blockchain Certificate.
 
 If the certificate has been revoked, the (optional) `revocationReason` may provide more information about why the certificate was revoked.
 
@@ -223,7 +223,7 @@ Using a blockchain transaction lookup service is effectively putting trust into 
 
 Note that this also assumes the verifier is online. We are pursuing alternative ways to resolve this and the above issue (securely looking up a transaction without SPOFs and without prohibitive hardware resources).
 
-Lastly, it is a best practice with blockchain transactions to factor in the number of confirmations a transaction has received. For payment transactions, more confirmations increases confidence that the transaction is accepted by the network and that is not a double spend. The minimum  number of confirmations required by Bitcoin payment acceptors varies per confidence required (some as low as 3 confirmations; some 6). With Blockcerts, issuers have less incentive to perform double spends, but checking the number of confirmations is a good practice.
+Lastly, it is a best practice with blockchain transactions to factor in the number of confirmations a transaction has received. For payment transactions, more confirmations increases confidence that the transaction is accepted by the network and that is not a double spend. The minimum  number of confirmations required by Bitcoin payment acceptors varies per confidence required (some as low as 3 confirmations; some 6). With Certyza, issuers have less incentive to perform double spends, but checking the number of confirmations is a good practice.
 
 ## Experimenting with and applying better blockchain transaction API practices
 
